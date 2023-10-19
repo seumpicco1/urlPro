@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/shorten', async (req, res) => {
 
   const urlKey = service.generateUrlKey();
-  const shortUrl = `http://${host}:${PORT}/${urlKey}`
+  const shortUrl = `http://${host}:/${urlKey}`
   //   console.log(shortUrl);
   console.log(req.body.longURL);
   urlDb.save(req.body.longURL, shortUrl, urlKey, urlDb.clicks);
