@@ -61,8 +61,38 @@ async function shortenUrl() {
   const data = await response.json();
   shortUrl.value = data;
   // longURL.value = ""
-  longURL.value = longURL.value;
+  // longURL.value = longURL.value;
   shortenUrl2.value = data;
+}
+
+const clearText =()=>{
+ longURL.value = ""
+  shortUrl.value = ""
+}
+
+const Deletefunc = async(id)=>{
+
+  try {
+      const res = await fetch(`https://urlbackend-x12i.onrender.com/${id}`, { 
+        method: "DELETE",
+      })
+      if (res.ok) {
+        datas.value = await geturls()
+      }else if(res.status === 401){
+        console.log("Error 401");
+      }
+      else { throw new error('Error, cannot get data') }
+    } catch (error) {
+      console.error(error)
+    }
+
+
+
+
+
+  console.log('CLick delete');
+
+
 }
 </script>
 <template>
@@ -111,10 +141,18 @@ async function shortenUrl() {
       />
 
       <button
-        class="bg-blue-950 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        @click="shortenUrl(longURL)"
+      :class="longURL.length === 0 ? 'bg-gray-500'  : 'bg-blue-700 hover:bg-blue-900'"
+        class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded" 
+        @click="shortenUrl(longURL)" :disabled="longURL.length === 0 " 
       >
         Shorten
+      </button>
+
+      <button
+        class="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded ml-5"
+        @click="clearText()"
+      >
+        Clear
       </button>
     </div>
 
@@ -135,7 +173,7 @@ async function shortenUrl() {
     </div>
 
     <div class="flex justify-center" v-if="shortUrl">
-      <Qrcodevue  class=" shadow-2xl" :value="shortUrl" :size:="300" level="H"></Qrcodevue>
+      <Qrcodevue  class=" shadow-2xl" :value="longURL" :size:="300" level="H"></Qrcodevue>
     </div>
 
     <div class="relative flex justify-center m-11 overflow-x-auto">
@@ -147,9 +185,10 @@ async function shortenUrl() {
         >
           <tr>
             <th scope="col" class="px-6 py-3">No.</th>
-            <th scope="col" class="px-6 py-3 text-left w-1/5 text-center">SHORTURL</th>
+            <th scope="col" class="px-6 py-3 w-1/5 text-center">SHORTURL</th>
             <th scope="col" class="px-6 py-3">COUNT</th>
             <th scope="col" class="px-6 py-3">QR CODE</th>
+            
           </tr>
         </thead>
         <tbody class="text-center overflow-y-auto">
@@ -164,7 +203,7 @@ async function shortenUrl() {
             >
               {{ index + 1 }}
             </th>
-            <td class="px-6 py-4 text-left text-2xl  hover:text-blue-800">
+            <td class="px-6 py-4 text-center text-2xl  hover:text-blue-800">
               <a
                 :href="item.shortURL"
                 target="_blank"
@@ -180,8 +219,13 @@ async function shortenUrl() {
                 :value="item.longURL"
                 :size:="200"
                 level="H"
-              ></Qrcodevue>
+              > </Qrcodevue>  
+
+              <div class=" pl-6 pt-8 text-3xl "> 
+                <button @click="Deletefunc(item.shortUrlId)">❌</button>
+              </div>
             </td>
+            
           </tr>
         </tbody>
         <tbody v-if = "datas.length == 0" class="bg-white  h-32">
