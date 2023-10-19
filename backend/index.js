@@ -7,7 +7,6 @@ const host = "https://urlbackend-x12i.onrender.com"
 const urlDb = require("./dbUrl");
 const bodyParser = require("body-parser"); //use to parse incoming request bodies
 const cors = require('cors');
-require('dotenv').config()
 mongoose.connect('mongodb+srv://mdb305041:mdb305-mongodb@cluster0.th2hpog.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -55,6 +54,40 @@ app.get("/all", async (req, res) => {
   }
 });
 
+app.get("/all", async (req, res) => {
+  // console.log(req.params);
+  console.log(req.body);
+  try {
+
+
+    const url = await urlDb.findAll({});
+    console.log(url.longURL);
+    // console.log(req.params);
+
+    return res.status(200).json(url)
+  } catch (error) {
+    return res.status(500).send("Cannot get")
+  }
+});
+
+app.delete("/:shortUrlId", async (req, res) => {
+  try {
+    const shortUrlId = req.params.shortUrlId;
+    const deletedUrl = await urlDb.deleteUrl(shortUrlId); 
+    
+    if (!deletedUrl) {
+      return res.status(404).send("URL not found");
+    }
+
+ 
+        
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("Error. Please try again.");
+  }
+});
+
 
 app.get("/:shortUrlId", async (req, res) => {
   // console.log(req.params);
@@ -70,21 +103,6 @@ app.get("/:shortUrlId", async (req, res) => {
     return res.status(500).send("Error. Please try again.")
   }
 });
-
-
-// app.post("/url", async (req, res) => {
-//     try {
-//         if (!!service.validateUrl(req.body.url))
-//             return res.status(400).send({ msg: "Invalid URL." });
-//         const urlKey = service.generateUrlKey();
-//         const shortUrl = `http://${host}:${PORT}/${urlKey}`
-//         await Url.save(req.body.url, shortUrl, urlKey)
-//         return res.status(200).send({ shortUrl });
-//     } catch (error) {
-//         return res.status(500).send({ msg: "Error. Please try again." })}});
-
-
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
