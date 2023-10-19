@@ -7,6 +7,7 @@ const host = "localhost";
 const urlDb = require("./dbUrl");
 const bodyParser = require("body-parser"); //use to parse incoming request bodies
 const cors = require('cors');
+require('dotenv').config()
 mongoose.connect('mongodb+srv://mdb305041:mdb305-mongodb@cluster0.th2hpog.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
