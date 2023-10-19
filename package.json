@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install-sever":"cd backend   npm i mongoose  && npm i cors &&   npm i shortid && npm i express && npm install validate.js",
-    "start-server":"cd backend && npm start "
-
+    "start-server":"cd backend && npm start ",
+    "install-clinet" :"cd fronter && npm install && npm i mongoose",
+    "build-client" : "cd fronter && npm run build",
+    "start-client": "cd fronter && npm run dev"
   },
   "keywords": [],
   "author": "",
