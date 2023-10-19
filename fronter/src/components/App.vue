@@ -96,39 +96,6 @@ const Deletefunc = async(id)=>{
 }
 </script>
 <template>
-  <!-- <div class=" background-container flex justify-center overflow-y-auto overflow-x-auto">
-    <div>
-      <h1 class="text-3xl font-bold  text-red-700"> URL Shortener</h1>
-      <div class="  flex justify-center">
-        <input v-model="longURL" placeholder="Enter a long URL" />
-        <div class="flex justify-center">
-          <p v-if="shortUrl">Shortened URL: <a :href="shortUrl" target="_blank"> <span class="text-green-600"  @click="fetchData(shortUrl)">{{  shortenUrl2 }} </span></a></p>
-        </div>
-        <p v-if="shortUrl">
-          <Qrcodevue :value="shortUrl" :size:="300" level="H"></Qrcodevue>
-        </p>
-      </div>
-    </div>
-  
-  <div class="  flex justify-center mt-4">
-    <button class="border-2" @click="shortenUrl(longURL)">Shorten</button>
-    <div>
-      <table>
-        <tr v-for="(item, index) in datas" :key="index">
-          <td>{{ index++ }}</td>
-          <td> <a :href="item.shortURL" target="_blank" @click="fetchData(item.shortURL)" class="hover:bg-red-600">{{ item.shortURL }}</a></td>
-          <td>{{ item.clicks }}</td>
-          <div class="ml-40 mt-12">
-            <td>
-              <Qrcodevue :value="item.longURL" :size:="100" level="H"></Qrcodevue>
-            </td>
-          </div>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div> -->
-
   <div class="h-screen w-full flex flex-col bg-slate-300">
     <div class="w-full text-center text-9xl font-bold text-blue-950 ">URL SHORTEN</div>
     <div class="w-full items-center flex justify-center p-11">
@@ -156,11 +123,6 @@ const Deletefunc = async(id)=>{
       </button>
     </div>
 
-    <!-- <div class="w-full items-center   ">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          @click="shortenUrl(longURL)">Shorten</button>
-      </div>
-       -->
     <div class="flex justify-center ">
       <div class="pb-6" v-if="shortUrl">
         <span class="font-bold text-3xl">Shortened URL : </span>
