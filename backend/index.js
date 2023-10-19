@@ -12,14 +12,14 @@ mongoose.connect('mongodb+srv://mdb305041:mdb305-mongodb@cluster0.th2hpog.mongod
   useUnifiedTopology: true,
 });
 const corsOptions = {
-  origin: 'http://127.0.0.1:5173',
+  origin: 'https://urlshrotenersynerry.onrender.com',
   optionsSuccessStatus: 200
 }
 
 app.use((req, res, next) => {   res.header('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');  
  next(); });
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5173');
+  res.setHeader('Access-Control-Allow-Origin', 'https://urlshrotenersynerry.onrender.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
