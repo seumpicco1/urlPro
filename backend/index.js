@@ -63,7 +63,7 @@ app.delete("/:shortUrlId", async (req, res) => {
     }
 
  
-        
+    return res.status(200).json({ message: "URL deleted successfully" });
 
   } catch (error) {
     console.log(error);
