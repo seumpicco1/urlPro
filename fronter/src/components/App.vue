@@ -12,7 +12,7 @@ const counts = ref(0);
 const shortenUrl2 = ref(null);
 async function geturls() {
   try {
-    const API = "http://localhost:3000/all";
+    const API = "https://urlbackend-x12i.onrender.com/all";
     const res = await fetch(API);
     if (res.ok) return res.json();
     else if (res.status === 401) {
@@ -47,7 +47,7 @@ const fetchData = async (x) => {
 };
 
 async function shortenUrl() {
-  const response = await fetch("http://localhost:3000/shorten", {
+  const response = await fetch("https://urlbackend-x12i.onrender.com/shorten", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
