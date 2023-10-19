@@ -37,23 +37,6 @@ app.post('/shorten', async (req, res) => {
   res.json(shortUrl);
 });
 
-
-app.get("/all", async (req, res) => {
-  // console.log(req.params);
-  console.log(req.body);
-  try {
-
-
-    const url = await urlDb.findAll({});
-    console.log(url.longURL);
-    // console.log(req.params);
-
-    return res.status(200).json(url)
-  } catch (error) {
-    return res.status(500).send("Cannot get")
-  }
-});
-
 app.get("/all", async (req, res) => {
   // console.log(req.params);
   console.log(req.body);
