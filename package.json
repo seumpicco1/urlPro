@@ -1,0 +1,15 @@
+{
+  "name": "urlpro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-sever":"cd backend  npm i && npm i mongoose  && npm i cors &&   npm i shortid && npm i express",
+    "start-server":"cd backend && node index.js "
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
